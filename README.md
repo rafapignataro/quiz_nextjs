@@ -21,7 +21,7 @@ git clone https://github.com/rafapignataro/quiz_nextjs.git
 Com o cmd aberto, utilize cd para entrar no repositorio
 
 ```sh
-cd quiz_next.js
+cd quiz_next
 ```
 
 No projeto utilize npm install ou yarn install
