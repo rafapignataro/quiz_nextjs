@@ -25,24 +25,37 @@ function LoadingWidget() {
 }
 
 function ResultWidget({ results }) {
+  // isCorrect,
+  // question_title: question.title,
+  // correct_answer: question.alternatives[question.answer],
+  // user_answer: question.alternatives[selectedAlternative],
+
   const totalCorrectQuestions = results.reduce(
-    (sum, curr) => (curr ? sum + 1 : sum),
+    (sum, curr) => (curr.isCorrect ? sum + 1 : sum),
     0
   );
+
   return (
-    <Widget>
-      <Widget.Header>Resultado</Widget.Header>
-      <Widget.Content>
-        <p>{`Você acertou ${totalCorrectQuestions} perguntas!`}</p>
-        <ul>
-          {results.map((result, resultIndex) => (
-            <li key={`result__${resultIndex}`}>
-              {`Questão ${resultIndex + 1}: ${result ? 'Acertou' : 'Errou'}`}
-            </li>
-          ))}
-        </ul>
-      </Widget.Content>
-    </Widget>
+    <>
+      <Widget>
+        <Widget.Header>Resultado</Widget.Header>
+        <Widget.Content>
+          <p>{`Você acertou ${totalCorrectQuestions} perguntas!`}</p>
+          <p>Cheque abaixo os resultados por questão!</p>
+        </Widget.Content>
+      </Widget>
+      {results.map((result, resultIndex) => (
+        <Widget key={`result__${resultIndex}`}>
+          <Widget.Header>{`Questão ${resultIndex + 1}`}</Widget.Header>
+          <Widget.Content>
+            <h2>{result.question_title}</h2>
+            <p>{`Sua resposta: ${result.user_answer}`}</p>
+            <p>{`Resposta correta: ${result.correct_answer}`}</p>
+            <p>{`Resultado: ${result.isCorrect ? 'Acertou' : 'Errou'}`}</p>
+          </Widget.Content>
+        </Widget>
+      ))}
+    </>
   );
 }
 
@@ -60,6 +73,7 @@ function QuestionWidget({
 
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
+
   return (
     <Widget>
       <Widget.Header>
@@ -85,7 +99,12 @@ function QuestionWidget({
             setIsQuestionSubmited(true);
 
             setTimeout(() => {
-              addResult(isCorrect);
+              addResult({
+                isCorrect,
+                question_title: question.title,
+                correct_answer: question.alternatives[question.answer],
+                user_answer: question.alternatives[selectedAlternative],
+              });
               onSubmit(event);
               setIsQuestionSubmited(false);
               setSelectedAlternative(undefined);
