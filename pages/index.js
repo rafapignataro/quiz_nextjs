@@ -52,9 +52,10 @@ export default function Home() {
                 name="name"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
+                maxLength={12}
               />
               <Button type="submit" disabled={name.length === 0}>
-                {`Jogar ${name}`}
+                {`Vamos jogar, ${name} ?`}
               </Button>
             </form>
           </Widget.Content>
