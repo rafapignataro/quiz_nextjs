@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import db from '../../../db.json';
+import { motion } from 'framer-motion';
+import Lottie from 'react-lottie';
+
+import loadingAnimation from './animation.json';
+
 import QuizBackground from '../../components/QuizBackground';
 import QuizContainer from '../../components/QuizContainer';
 import QuizLogo from '../../components/QuizLogo';
@@ -15,21 +19,33 @@ const screenStates = {
   RESULT: 'RESULT',
 };
 
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: loadingAnimation,
+  rendererSettings: {
+    preserveAspectRatio: 'xMidYMid slice',
+  },
+};
+
 function LoadingWidget() {
   return (
     <Widget>
       <Widget.Header>Carregando...</Widget.Header>
-      <Widget.Content>[Desagio do Loading]</Widget.Content>
+      <Widget.Content>
+        <Lottie
+          options={defaultOptions}
+          height={100}
+          width={100}
+          isStopped={false}
+          isPaused={false}
+        />
+      </Widget.Content>
     </Widget>
   );
 }
 
 function ResultWidget({ results }) {
-  // isCorrect,
-  // question_title: question.title,
-  // correct_answer: question.alternatives[question.answer],
-  // user_answer: question.alternatives[selectedAlternative],
-
   const totalCorrectQuestions = results.reduce(
     (sum, curr) => (curr.isCorrect ? sum + 1 : sum),
     0
@@ -208,7 +224,17 @@ export default function QuizPage({ db }) {
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
         {screenState === screenStates.RESULT && (
-          <ResultWidget results={results} />
+          <ResultWidget
+            as={motion.section}
+            transition={{ delay: 0.4, duration: 0.5 }}
+            variants={{
+              show: { opacity: 1, x: '0' },
+              hidden: { opacity: 0, x: '-100%' },
+            }}
+            initial="hidden"
+            animate="show"
+            results={results}
+          />
         )}
       </QuizContainer>
     </QuizBackground>
