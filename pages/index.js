@@ -108,7 +108,7 @@ export default function Home() {
           animate="show"
         />
       </QuizContainer>
-      <GitHubCorner projectUrl="https://github.com/rafapignataro" />
+      <GitHubCorner projectUrl="https://github.com/rafapignataro/quiz_nextjs" />
     </QuizBackground>
   );
 }
