@@ -4,21 +4,21 @@
   "description": "Teste os seus conhecimentos sobre CSS e vamos ver quantos layouts você vai deixar de quebrar",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
+      "image": "https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif",
       "title": "O Node.js roda no _____?",
       "description": "Essa é pra aquecer",
       "answer": 1,
       "alternatives": ["Cliente", "Servidor", "Nos dois", "Nenhum dos dois"]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+      "image": "https://media.giphy.com/media/1C8bHHJturSx2/giphy.gif",
       "title": "Quais dessas linguagens são válidas para o Node.js?",
       "description": "Essa é de boa em",
       "answer": 3,
       "alternatives": ["C#", "Java", "C++", "Javascript"]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+      "image": "https://media.giphy.com/media/10zxDv7Hv5RF9C/giphy.gif",
       "title": "Pacotes de terceiros podem ser instalados usando _____.",
       "answer": 0,
       "alternatives": [
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+      "image": "https://media.giphy.com/media/dZX3AduGrY3uJ7qCsx/giphy.gif",
       "title": "Qual dos seguintes módulos principais é usado para criar um servidor web em Node.js?",
       "answer": 3,
       "alternatives": ["fs", "url", "connect", "http"]

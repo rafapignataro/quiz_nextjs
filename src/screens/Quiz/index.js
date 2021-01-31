@@ -35,6 +35,11 @@ function ResultWidget({ results }) {
     0
   );
 
+  const result_colors = {
+    wrong: '#FF5722',
+    success: '#4CAF50',
+  };
+
   return (
     <>
       <Widget>
@@ -51,7 +56,15 @@ function ResultWidget({ results }) {
             <h2>{result.question_title}</h2>
             <p>{`Sua resposta: ${result.user_answer}`}</p>
             <p>{`Resposta correta: ${result.correct_answer}`}</p>
-            <p>{`Resultado: ${result.isCorrect ? 'Acertou' : 'Errou'}`}</p>
+            <Widget.Topic
+              style={{
+                backgroundColor: `${
+                  result.isCorrect ? result_colors.success : result_colors.wrong
+                }`,
+              }}
+            >
+              {`Resultado: ${result.isCorrect ? 'Acertou' : 'Errou'}`}
+            </Widget.Topic>
           </Widget.Content>
         </Widget>
       ))}
