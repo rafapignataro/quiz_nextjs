@@ -1,4 +1,7 @@
 <h1>Quiz em Next.js</h1>
+
+![Screenshot 2021-02-01 103022](https://user-images.githubusercontent.com/16678782/106465582-ebcf0c00-6478-11eb-965b-7c8a5757baab.png)
+
 <h3><a href="https://quiz-nextjs.rafapignataro.vercel.app/">Ver demo</a></h3>
 <a href="https://www.linkedin.com/in/rafael-pignataro/"><img alt="Linkedin" src="https://img.shields.io/badge/-Linkedin-blue" /></a>
 </p>
