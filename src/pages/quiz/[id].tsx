@@ -1,8 +1,14 @@
+import { GetServerSideProps } from 'next';
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import QuizScreen from '../../src/screens/Quiz';
+import db from '../../db.json';
 
-export default function ExternalQuizPage({ db }) {
+interface Props {
+  db: typeof db;
+}
+
+export default function ExternalQuizPage({ db }: Props) {
   return (
     <ThemeProvider theme={db.theme}>
       <QuizScreen db={db} />
@@ -10,8 +16,8 @@ export default function ExternalQuizPage({ db }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const { id } = context.query;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const id = context.query.id as string;
 
   const [projectName, userName] = id.split('___');
 
@@ -34,4 +40,4 @@ export async function getServerSideProps(context) {
       },
     };
   }
-}
+};

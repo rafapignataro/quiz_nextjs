@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
@@ -19,13 +19,19 @@ export default function Home() {
 
   const [name, setName] = useState('');
 
-  function handleSubmit(event) {
+  const handleNameInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setName(event.target.value);
+  };
+
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
     const name = 'Rafix';
 
     router.push(`/quiz?name=${name}`);
-  }
+  };
 
   return (
     <QuizBackground backgroundImage={db.bg}>
@@ -50,7 +56,7 @@ export default function Home() {
                 type="text"
                 placeholder="Digite seu nome aqui"
                 name="name"
-                onChange={(e) => setName(e.target.value)}
+                onChange={handleNameInputChange}
                 value={name}
                 maxLength={12}
               />

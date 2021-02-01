@@ -14,7 +14,11 @@ const SVG = styled.svg`
   vertical-align: middle;
 `;
 
-export default function BackLinkArrow({ href }) {
+interface Props {
+  href: string;
+}
+
+export default function BackLinkArrow({ href }: Props) {
   return (
     <StyledLink
       href={href}
@@ -38,7 +42,3 @@ export default function BackLinkArrow({ href }) {
     </StyledLink>
   );
 }
-
-BackLinkArrow.propTypes = {
-  href: PropTypes.string.isRequired,
-};

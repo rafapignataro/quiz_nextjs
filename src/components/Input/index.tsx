@@ -14,21 +14,16 @@ const InputBase = styled.input`
   margin-bottom: 25px;
 `;
 
-export default function Input({ onChange, placeholder, ...props }) {
+interface Props extends React.HTMLProps<HTMLInputElement> {
+  placeholder: string;
+  value: string;
+  name: string;
+}
+
+export default function Input({ onChange, placeholder, ...props }: Props) {
   return (
     <div>
       <InputBase placeholder={placeholder} onChange={onChange} {...props} />
     </div>
   );
 }
-
-Input.defaultProps = {
-  value: '',
-};
-
-Input.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  value: PropTypes.string,
-};

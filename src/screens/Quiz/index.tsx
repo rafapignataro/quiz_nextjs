@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 
-import { motion } from 'framer-motion';
 import Lottie from 'react-lottie';
 
 import loadingAnimation from './animation.json';
@@ -13,6 +12,14 @@ import Button from '../../components/Button';
 import AlternativesForm from '../../components/AlternativesForm';
 import BackLinkArrow from '../../components/BackLinkArrow';
 import Link from '../../components/Link';
+
+interface Question {
+  image: string;
+  title: string;
+  description: string;
+  answer: number;
+  alternatives: string[];
+}
 
 const screenStates = {
   QUIZ: 'QUIZ',
@@ -46,7 +53,18 @@ function LoadingWidget() {
   );
 }
 
-function ResultWidget({ results }) {
+interface Result {
+  isCorrect: Boolean;
+  question_title: string;
+  correct_answer: string;
+  user_answer: string;
+}
+
+interface ResultWidgetProps {
+  results: Result[];
+}
+
+function ResultWidget({ results }: ResultWidgetProps) {
   const totalCorrectQuestions = results.reduce(
     (sum, curr) => (curr.isCorrect ? sum + 1 : sum),
     0
@@ -64,8 +82,8 @@ function ResultWidget({ results }) {
         <Widget.Content>
           <p>{`Você acertou ${totalCorrectQuestions} perguntas!`}</p>
           <p>Cheque abaixo os resultados por questão!</p>
-          <Link href={'/'} style={{ textDecoration: 'none' }}>
-            <Button as="a">Realizar novamente</Button>
+          <Link href={'/'}>
+            <Button component="Button">Realizar novamente</Button>
           </Link>
         </Widget.Content>
       </Widget>
@@ -92,13 +110,21 @@ function ResultWidget({ results }) {
   );
 }
 
+interface QuestionWidgetProps {
+  question: Question;
+  questionIndex: number;
+  totalQuestions: number;
+  onSubmit: Function;
+  addResult: Function;
+}
+
 function QuestionWidget({
   question,
   questionIndex,
   totalQuestions,
   onSubmit,
   addResult,
-}) {
+}: QuestionWidgetProps) {
   const [selectedAlternative, setSelectedAlternative] = useState(undefined);
   const [isQuestionSubmited, setIsQuestionSubmited] = useState(false);
 
@@ -106,6 +132,22 @@ function QuestionWidget({
 
   const isCorrect = selectedAlternative === question.answer;
   const hasAlternativeSelected = selectedAlternative !== undefined;
+  const handleAlternativesForm = (event: FormEvent) => {
+    event.preventDefault();
+    setIsQuestionSubmited(true);
+
+    setTimeout(() => {
+      addResult({
+        isCorrect,
+        question_title: question.title,
+        correct_answer: question.alternatives[question.answer],
+        user_answer: question.alternatives[selectedAlternative],
+      });
+      onSubmit(event);
+      setIsQuestionSubmited(false);
+      setSelectedAlternative(undefined);
+    }, 3000);
+  };
 
   return (
     <Widget>
@@ -126,24 +168,7 @@ function QuestionWidget({
         <h2>{question.title}</h2>
         <p>{question.description}</p>
 
-        <AlternativesForm
-          onSubmit={(event) => {
-            event.preventDefault();
-            setIsQuestionSubmited(true);
-
-            setTimeout(() => {
-              addResult({
-                isCorrect,
-                question_title: question.title,
-                correct_answer: question.alternatives[question.answer],
-                user_answer: question.alternatives[selectedAlternative],
-              });
-              onSubmit(event);
-              setIsQuestionSubmited(false);
-              setSelectedAlternative(undefined);
-            }, 3000);
-          }}
-        >
+        <AlternativesForm onSubmit={handleAlternativesForm}>
           {question.alternatives.map((alternative, alternativeIndex) => {
             const alternative_id = `alternative__${alternativeIndex}`;
             const alternativeStatus = isCorrect ? 'SUCCESS' : 'ERROR';
@@ -228,17 +253,7 @@ export default function QuizPage({ db }) {
         {screenState === screenStates.LOADING && <LoadingWidget />}
 
         {screenState === screenStates.RESULT && (
-          <ResultWidget
-            as={motion.section}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            variants={{
-              show: { opacity: 1, x: '0' },
-              hidden: { opacity: 0, x: '-100%' },
-            }}
-            initial="hidden"
-            animate="show"
-            results={results}
-          />
+          <ResultWidget results={results} />
         )}
       </QuizContainer>
     </QuizBackground>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import db from '../db.json';
+import db from '../../db.json';
 
 const { theme } = db;
 
@@ -21,6 +21,12 @@ const GlobalStyle = createGlobalStyle`
   }
   html, body {
     min-height: 100vh;
+  }
+  button {
+    cursor: pointer;
+  }
+  a {
+    text-decoration: none;
   }
   #__next {
     flex: 1;

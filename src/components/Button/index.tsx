@@ -14,7 +14,6 @@ const Button = styled.button`
   text-transform: uppercase;
   outline: 0;
   transition: 0.3s;
-  cursor: pointer;
   &:hover,
   &:focus {
     opacity: 0.5;
@@ -24,10 +23,5 @@ const Button = styled.button`
     cursor: not-allowed;
   }
 `;
-
-Button.propTypes = {
-  type: PropTypes.oneOf(['submit', 'type', 'button']).isRequired,
-  children: PropTypes.node.isRequired,
-};
 
 export default Button;
