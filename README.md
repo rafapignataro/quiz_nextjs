@@ -6,7 +6,7 @@
 <a href="https://www.linkedin.com/in/rafael-pignataro/"><img alt="Linkedin" src="https://img.shields.io/badge/-Linkedin-blue" /></a>
 </p>
 
-Desenvolvi esse quiz durante a imersão da Alura sobre Next.js. O tema era customizavel, então optei por fazer sobre Node.js. Adicionei mais coisas do que foi ensinado no curso como as respostas comparadas a resposta certa, Typescript, ajustes no css entre outras coisas.
+Desenvolvi esse quiz durante a imersão da Alura sobre Next.js. O tema era customizavel, então optei por fazer sobre Node.js. Adicionei mais coisas do que foi ensinado no curso como as respostas comparadas a resposta certa, __Typescript__, ajustes no css entre outras coisas.
 
 ## Tecnologias
 
