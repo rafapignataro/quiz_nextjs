@@ -2,17 +2,17 @@ import React, { FormEvent, useState } from 'react';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
-import db from '../db.json';
+import db from '../../db.json';
 
-import QuizBackground from '../src/components/QuizBackground';
-import QuizContainer from '../src/components/QuizContainer';
-import QuizLogo from '../src/components/QuizLogo';
-import Widget from '../src/components/Widget';
-import Footer from '../src/components/Footer';
-import GitHubCorner from '../src/components/GitHubCorner';
-import Input from '../src/components/Input';
-import Button from '../src/components/Button';
-import Link from '../src/components/Link';
+import QuizBackground from '../../src/components/QuizBackground';
+import QuizContainer from '../../src/components/QuizContainer';
+import QuizLogo from '../../src/components/QuizLogo';
+import Widget from '../../src/components/Widget';
+import Footer from '../../src/components/Footer';
+import GitHubCorner from '../../src/components/GitHubCorner';
+import Input from '../../src/components/Input';
+import Button from '../../src/components/Button';
+import Link from '../../src/components/Link';
 
 export default function Home() {
   const router = useRouter();

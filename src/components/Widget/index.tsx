@@ -50,6 +50,10 @@ Widget.Content = styled.div`
     list-style: none;
     padding: 0;
   }
+
+  @media screen and (max-width: 500px) {
+    padding: 24px 18px 32px 18px;
+  }
 `;
 
 Widget.Topic = styled.a`
