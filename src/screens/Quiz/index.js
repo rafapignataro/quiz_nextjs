@@ -12,6 +12,7 @@ import Widget from '../../components/Widget';
 import Button from '../../components/Button';
 import AlternativesForm from '../../components/AlternativesForm';
 import BackLinkArrow from '../../components/BackLinkArrow';
+import Link from '../../components/Link';
 
 const screenStates = {
   QUIZ: 'QUIZ',
@@ -63,6 +64,9 @@ function ResultWidget({ results }) {
         <Widget.Content>
           <p>{`Você acertou ${totalCorrectQuestions} perguntas!`}</p>
           <p>Cheque abaixo os resultados por questão!</p>
+          <Link href={'/'} style={{ textDecoration: 'none' }}>
+            <Button as="a">Realizar novamente</Button>
+          </Link>
         </Widget.Content>
       </Widget>
       {results.map((result, resultIndex) => (
